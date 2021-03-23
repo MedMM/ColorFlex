@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4356f042a61d3ac429749d7563d27cdd, type: 3}
+  m_Name: PianoSamples
+  m_EditorClassIdentifier: 
+  samplesName: Piano
+  notes:
+  - {fileID: 8300000, guid: 65e941547b664b94aa7ec6068be7e56c, type: 3}
+  - {fileID: 8300000, guid: f3b33de8bdfa35a4692eb6b279aec044, type: 3}
+  - {fileID: 8300000, guid: c14fa52504900274c948cd163dcb7536, type: 3}
+  - {fileID: 8300000, guid: ecc3bf932cdc82d4eb22d7dbf2308cb2, type: 3}
+  - {fileID: 8300000, guid: 4baaf91b2d36ae649ab5ba3bdf6efd56, type: 3}
+  - {fileID: 8300000, guid: 76a18d118ce60fb4ebd958a7e96d26fc, type: 3}
+  - {fileID: 8300000, guid: 0f8bb7345a6ce2c4aab841e678d1b9af, type: 3}
+  - {fileID: 8300000, guid: 43906e5488d696a45b27475b773e5d69, type: 3}
+  - {fileID: 8300000, guid: d9994136c60cc414c9255d34adb4074f, type: 3}
+  - {fileID: 8300000, guid: 9fe2cd84935963a45b0765192c9145ec, type: 3}
+  - {fileID: 8300000, guid: 31d3476d338d3bc4999be944fd04e2e8, type: 3}
+  - {fileID: 8300000, guid: 670b5c4a8e3b3524a9153c6a31815f94, type: 3}

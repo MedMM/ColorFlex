@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: a7234a194e61a724680939b27bcb2937
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - playerSkinItem: {fileID: 11400000, guid: caecdaf2790430943bb169c77939184d, type: 2}
+  - musicItem: {fileID: 11400000, guid: 177c90114c77e5642a9d01c351f69088, type: 2}
+  - backgroundItem: {fileID: 11400000, guid: f6c68fdf62c4f2146b9272d70af43429, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

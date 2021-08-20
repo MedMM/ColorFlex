@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Misc;
+using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
@@ -82,7 +83,7 @@ public class GameManager : MonoBehaviour
 
     public void BackgroundStep()
     {
-        StartCoroutine(IEnumerators.SmoothLerp(background, background.transform.position + new Vector3(0, BGStep * -1 , 0), BGStepTime));
+        StartCoroutine(Enumerators.SmoothLerp(background, background.transform.position + new Vector3(0, BGStep * -1 , 0), BGStepTime));
 
         //background.transform.position += new Vector3(0, BGStep, 0);
     }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Misc;
 using UnityEngine;
 
 public class PlatformScript : MonoBehaviour
@@ -62,13 +63,13 @@ public class PlatformScript : MonoBehaviour
     private void DestroyFragment()
     {
         Vector2 fragmentPosition = new Vector2(0, 0);
-        StartCoroutine(IEnumerators.SmoothLerpAndDestroy(fragmentsLeft[0].gameObject, fragmentPosition,  0.2f));
+        StartCoroutine(Enumerators.SmoothLerpAndDestroy(fragmentsLeft[0].gameObject, fragmentPosition,  0.2f));
 
         fragmentsLeft.Remove(fragmentsLeft[0]);
 
         for (int i = 0; i < fragmentsLeft.Count; i++)
         {
-            StartCoroutine(IEnumerators.SmoothLerp(fragmentsLeft[i].gameObject,
+            StartCoroutine(Enumerators.SmoothLerp(fragmentsLeft[i].gameObject,
                 new Vector3( fragmentsLeft[i].gameObject.transform.localPosition.x, ((fragmentHeight * i + fragmentHeight) * -1), 0),
                 0.2f));
             
@@ -89,7 +90,7 @@ public class PlatformScript : MonoBehaviour
 
         for (int i = 0; i < fragmentsRight.Count; i++)
         {
-            StartCoroutine(IEnumerators.SmoothLerp(fragmentsRight[i].gameObject, 
+            StartCoroutine(Enumerators.SmoothLerp(fragmentsRight[i].gameObject, 
                 new Vector3(0, fragmentHeight * (i + 1) , 0) *-1,
                 0.2f));
             //fragmentsRight[i].transform.localPosition = new Vector3(0, (i * fragmentHeight) *-1, 0);
@@ -101,7 +102,7 @@ public class PlatformScript : MonoBehaviour
     {
         CreateFragment();
         AddFragmentToRightSide();
-        StartCoroutine(IEnumerators.ColorLerp(headColor, GetPlatformColor(), GetFragmentColor(0), fadeInTime)); //покрасить верхнюю поверхность
+        StartCoroutine(Enumerators.ColorLerp(headColor, GetPlatformColor(), GetFragmentColor(0), fadeInTime)); //покрасить верхнюю поверхность
         DestroyFragment();
     }
 

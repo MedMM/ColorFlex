@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Misc;
 using UnityEngine;
 
 public class SolidController : JumperControls
@@ -22,13 +23,13 @@ public class SolidController : JumperControls
     {
         base.SwipeLeft();
         playerZRotation -= 90;
-        StartCoroutine(IEnumerators.SmoothRotation(gameObject, playerZRotation, rotationTime));
+        StartCoroutine(Enumerators.SmoothRotation(gameObject, playerZRotation, rotationTime));
     }
 
     protected override void SwipeRight()
     {
         base.SwipeRight();
         playerZRotation += 90;
-        StartCoroutine(IEnumerators.SmoothRotation(gameObject, playerZRotation, rotationTime));
+        StartCoroutine(Enumerators.SmoothRotation(gameObject, playerZRotation, rotationTime));
     }
 }

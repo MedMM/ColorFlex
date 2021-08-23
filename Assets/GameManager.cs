@@ -3,11 +3,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager instance = null;
-    private Camera mainCamera;
-    private CameraBackgroundColor cameraBackgroundColor;
-    private int score = 0;
-    private int bestScore = 0;
+    public static GameManager instance;
     [SerializeField] private Color[] colors = new Color[4];
     [SerializeField] private Color defaultColor;
     [SerializeField] private PlayerSpawner _playerSpawner;
@@ -15,6 +11,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject background;
     [SerializeField] [Range(0f, 5f)] private float BGStep; 
     [SerializeField] [Range(0.01f, 2f)] private float BGStepTime; 
+    private Camera mainCamera;
+    private CameraBackgroundColor cameraBackgroundColor;
+    private int score = 0;
+    private int bestScore = 0;
 
     private void Start()
     {

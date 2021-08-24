@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
-using UnityEngine;
+﻿using UnityEngine;
 [System.Serializable]
 
 public class Jumper : MonoBehaviour
@@ -10,13 +7,6 @@ public class Jumper : MonoBehaviour
     [SerializeField] private SpriteRenderer[] playerSideColors;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private float jumpForce = 4000;
-    [SerializeField] private int health = 4;
-    [SerializeField] private bool isDead = false;
-    [SerializeField] private bool deathless = false;
-
-
-
-    [SerializeField] private float timeBeforeGameStarts;
 
     private void Start()
     {
@@ -27,12 +17,6 @@ public class Jumper : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-
-
-    }
-
     private void Jump()
     {
         rb.velocity = new Vector2(0, 0);
@@ -41,7 +25,7 @@ public class Jumper : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (!isDead && collision.gameObject.tag == "Platform")
+        if (collision.gameObject.CompareTag("Platform"))
         {
             CheckCollisions();
             Jump();
@@ -54,13 +38,10 @@ public class Jumper : MonoBehaviour
         {
             if (sides[i].IsSideHit())
             {
-
-                //Debug.Log($"{sides[i].GetColor()} and { sides[i].GetPlatformColor()} == {(sides[i].GetColor().Equals(sides[i].GetPlatformColor()))}");
                 if (sides[i].GetColor() == sides[i].GetPlatformColor())
                 {
                     sides[i].BouncePlatform();
                     GameManager.instance.AddScore(1);
-                    GameManager.instance.BackgroundStep();
                 }
                 else if (sides[i].GetPlatformColor() == sides[i].GetPlatformDefaultColor())
                 {
@@ -68,50 +49,10 @@ public class Jumper : MonoBehaviour
                 }
                 else
                 {
-                    TakeDamage();
+                    //TakeDamage();
                 }
             }
         }
-    }
-
-    private void TakeDamage()
-    {
-        if (deathless) { return; }
-        health -= 1;
-        UI_script.instance.RemoveHeart(health);
-        if (health <= 0)
-        {
-            Die();
-            return;
-        }
-
-    }
-
-    private void Die()
-    {
-        GameManager.instance.GameOver();
-
-        rb.freezeRotation = false;
-        rb.constraints = RigidbodyConstraints2D.None;
-        jumpForce = jumpForce * 0.3f;
-        isDead = true;
-    }
-
-    public void SetDefaultSettings()
-    {
-        isDead = false;
-        health = 4;
-        jumpForce = 4000;
-
-        rb.velocity = new Vector2(0, -1);
-        rb.constraints = RigidbodyConstraints2D.FreezePositionX;
-        rb.freezeRotation = true;
-        rb.gravityScale = 9.8f;
-    }
-
-    public void ChangePlayerGravity(float gravity)
-    {
-        rb.gravityScale = gravity;
     }
 }
 

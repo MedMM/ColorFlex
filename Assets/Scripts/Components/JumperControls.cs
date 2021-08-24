@@ -5,6 +5,7 @@ namespace Components
 	[RequireComponent(typeof(Rigidbody2D))]
 	public abstract class JumperControls : MonoBehaviour
 	{
+		protected Rigidbody2D rb;
 		protected float distanceToRotation = 200;
 		protected float distanceX;
 		protected float startRotation;
@@ -12,11 +13,13 @@ namespace Components
 		private Vector2 fingerCurrentPosition;
 		private float dashForce = -3000;
 		private float distanceToDash = 200;
-		private float distanceY = 0;
+		private float distanceY;
 		private bool isActed = true;
 
 		protected void Start()
 		{
+			rb = gameObject.GetComponent<Rigidbody2D>();
+
 			SwipeLeft();
 		}
 
@@ -55,7 +58,7 @@ namespace Components
 			}
 		}
 
-		protected virtual void KeyboardControls()
+		protected void KeyboardControls()
 		{
 			if (Input.GetKeyDown(KeyCode.A))
 			{
@@ -75,8 +78,6 @@ namespace Components
 
 		protected virtual void Dash()
 		{
-			var rb = gameObject.GetComponent<Rigidbody2D>();
-
 			if (rb.velocity.y > 0)
 			{
 				rb.velocity = Vector2.zero;

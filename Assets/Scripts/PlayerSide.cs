@@ -2,8 +2,8 @@
 
 public class PlayerSide : MonoBehaviour
 {
-    private float raycastDistance = 6.5f;
     private SpriteRenderer spriteRenderer;
+    private float raycastDistance = 6.5f;
 
     private void Start()
     {

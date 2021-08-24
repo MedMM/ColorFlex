@@ -6,7 +6,6 @@ public class Tweens : MonoBehaviour
 {
 	[SerializeField] float appearingTime = 1;
 	[SerializeField] private float buttonClickTime = 1;
-	[SerializeField] private float fadeTime = 1;
 	
 	private Vector3 fullScreenScale = new Vector3(5, 5, 1);
 	private string sceneToLoad;
@@ -23,16 +22,6 @@ public class Tweens : MonoBehaviour
 	void SmoothAppear()
 	{
 		LeanTween.alpha(gameObject.GetComponent<RectTransform>(), 0, appearingTime);
-	}
-
-	void SmoothDisappear()
-	{
-		LeanTween.alpha(gameObject.GetComponent<RectTransform>(), 1, appearingTime);
-	}
-
-	void ReloadScene()
-	{
-		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 	}
 
 	public void FillScreenAndLoadScene(GameObject gameObject)

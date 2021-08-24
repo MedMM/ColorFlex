@@ -1,20 +1,14 @@
-﻿using Misc;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     [SerializeField] private Color[] colors = new Color[4];
     [SerializeField] private Color defaultColor;
-    [SerializeField] private PlayerSpawner _playerSpawner;
-    [Header("BG settings")]
-    [SerializeField] private GameObject background;
-    [SerializeField] [Range(0f, 5f)] private float BGStep; 
-    [SerializeField] [Range(0.01f, 2f)] private float BGStepTime; 
     private Camera mainCamera;
     private CameraBackgroundColor cameraBackgroundColor;
-    private int score = 0;
-    private int bestScore = 0;
+    private int score;
+    private int bestScore;
 
     private void Start()
     {
@@ -34,14 +28,11 @@ public class GameManager : MonoBehaviour
 
     private void InitializeManager()
     {
-        //_playerSpawner = GetComponent<PlayerSpawner>();
-
         mainCamera = Camera.main;
         cameraBackgroundColor = mainCamera.gameObject.GetComponent<CameraBackgroundColor>();
 
         score = 0;
         bestScore = PlayerPrefs.GetInt("bestScore");
-
     }
 
     public void AddScore(int add)
@@ -71,21 +62,9 @@ public class GameManager : MonoBehaviour
         defaultColor = color;
     }
 
-    public int GetBestScore()
-    {
-        return bestScore;
-    }
-
     public void SetCameraBackgroundTime(float duration)
     {
         cameraBackgroundColor.SetDuration(duration);
-    }
-
-    public void BackgroundStep()
-    {
-        StartCoroutine(Enumerators.SmoothLerp(background, background.transform.position + new Vector3(0, BGStep * -1 , 0), BGStepTime));
-
-        //background.transform.position += new Vector3(0, BGStep, 0);
     }
 
     public void GameOver()
@@ -95,10 +74,8 @@ public class GameManager : MonoBehaviour
 
     public void PlayAgain()
     {
-        _playerSpawner.SpawnPlayer();
         UI_script.instance.PlayAgain();
         score = 0;
         UI_script.instance.SetCurrentScoreText(score);
-        //SmoothResetScore();
     }
 }

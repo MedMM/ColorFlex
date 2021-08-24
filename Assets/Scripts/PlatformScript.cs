@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using DG.Tweening;
 using Misc;
 using UnityEngine;
 
@@ -12,7 +13,6 @@ public class PlatformScript : MonoBehaviour
 	[SerializeField] private List<GameObject> fragmentsLeft; //List фрагментов слева
 	[SerializeField] private List<GameObject> fragmentsRight; //List фрагментов справа
 	[SerializeField] private Color defaultColor;
-	[SerializeField] private Vector3 finalPosition;
 	[SerializeField] private float fadeInTime = 2; // Время за которе красится head
 
 	private void Start()
@@ -63,8 +63,7 @@ public class PlatformScript : MonoBehaviour
 
 	private void CreateFragment(Color color)
 	{
-		//GameObject fragment = Instantiate(fragmentPref, leftColorsStartPoint.position, Quaternion.identity , leftColorsStartPoint.transform);
-		GameObject fragment = Instantiate(fragmentPref, leftColorsStartPoint.position, gameObject.transform.rotation,
+		var fragment = Instantiate(fragmentPref, leftColorsStartPoint.position, gameObject.transform.rotation,
 			leftColorsStartPoint.transform);
 		fragment.GetComponent<SpriteRenderer>().color = color;
 		fragment.transform.localPosition += new Vector3(0, ((fragmentsLeft.Count * fragmentHeight) * -1), 0);
@@ -105,7 +104,6 @@ public class PlatformScript : MonoBehaviour
 			StartCoroutine(Enumerators.SmoothLerp(fragmentsRight[i].gameObject,
 				new Vector3(0, fragmentHeight * (i + 1), 0) * -1,
 				0.2f));
-			//fragmentsRight[i].transform.localPosition = new Vector3(0, (i * fragmentHeight) *-1, 0);
 		}
 	}
 
@@ -113,12 +111,11 @@ public class PlatformScript : MonoBehaviour
 	{
 		CreateFragment();
 		AddFragmentToRightSide();
-		StartCoroutine(Enumerators.ColorLerp(headColor, GetPlatformColor(), GetFragmentColor(0),
-			fadeInTime)); //покрасить верхнюю поверхность
+		headColor.DOColor(GetFragmentColor(0), fadeInTime);
 		DestroyFragment();
 	}
-
-	public bool RotateWhenRevercing;
+	// StartCoroutine(Enumerators.ColorLerp(headColor, GetPlatformColor(), GetFragmentColor(0),
+	// 	fadeInTime));
 
 	private void RevercePlatform()
 	{
@@ -138,8 +135,6 @@ public class PlatformScript : MonoBehaviour
 		var fragmentsTemp = fragmentsLeft;
 		fragmentsLeft = fragmentsRight;
 		fragmentsRight = fragmentsTemp;
-
-		if (RotateWhenRevercing) transform.Rotate(new Vector3(0, 180, 0));
 	}
 
 	public Color GetFragmentColor(int index)

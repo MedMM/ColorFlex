@@ -7,11 +7,10 @@ namespace Game.Inputs
 	{
 		[SerializeField] private float minimumSwipeDistance = 0.2f;
 		[SerializeField] private float maximumSwipeTime = 1f;
-		private TouchControls touchControls;
 		private SwipeDetection swipeDetection;
+		private DragDetection dragDetection;
+		private TouchControls touchControls;
 		private Camera mainCamera;
-
-		public SwipeDetection Swipes => swipeDetection;
 
 		#region Events
 
@@ -25,52 +24,39 @@ namespace Game.Inputs
 
 		#endregion
 
+		public SwipeDetection Swipes => swipeDetection;
+		public DragDetection Drag => dragDetection;
+
 		private void Awake()
 		{
 			swipeDetection = new SwipeDetection(this, ref minimumSwipeDistance, ref maximumSwipeTime);
+			dragDetection = new DragDetection(this);
 			touchControls = new TouchControls();
 			mainCamera = Camera.main;
 		}
 
-		private void OnEnable() => touchControls.Enable();
+		private void OnEnable()
+		{
+			touchControls.Enable();
+		}
 
 		private void OnDisable() => touchControls.Disable();
 
 		private void Start()
 		{
-			touchControls.Touch.TouchPress.started += ctx => Log("Touch.TouchPress.started");
 			touchControls.Swipe.PrimaryContact.started += StartTouchPrimary;
 			touchControls.Swipe.PrimaryContact.canceled += EndTouchPrimary;
-			touchControls.Touch.TouchDrag.performed += ctx => OnTouchDrag(ctx, "performed");
-			touchControls.Touch.TouchDrag.started += ctx => OnTouchDrag(ctx, "started");
-			touchControls.Touch.TouchDrag.canceled += ctx => OnTouchDrag(ctx, "canceled");
 		}
 
-		private void OnTouchDrag(InputAction.CallbackContext context, string str)
-		{
-			Debug.Log("OnTouchDrag " + str);
-		}
-
-		private void StartTouchPrimary(InputAction.CallbackContext context)
-		{
+		private void StartTouchPrimary(InputAction.CallbackContext context) =>
 			OnStartTouch?.Invoke(Utils.ScreenToWorldPoint(mainCamera,
 				touchControls.Swipe.PrimaryPosition.ReadValue<Vector2>()), (float) context.startTime);
-		}
 
-		private void EndTouchPrimary(InputAction.CallbackContext context)
-		{
+		private void EndTouchPrimary(InputAction.CallbackContext context) =>
 			OnEndTouch?.Invoke(Utils.ScreenToWorldPoint(mainCamera,
 				touchControls.Swipe.PrimaryPosition.ReadValue<Vector2>()), (float) context.time);
-		}
 
 		public Vector2 PrimaryPosition()
-		{
-			return Utils.ScreenToWorldPoint(mainCamera, touchControls.Swipe.PrimaryPosition.ReadValue<Vector2>());
-		}
-
-		private void Log(string msg)
-		{
-			Debug.Log(msg);
-		}
+			=> Utils.ScreenToWorldPoint(mainCamera, touchControls.Swipe.PrimaryPosition.ReadValue<Vector2>());
 	}
 }

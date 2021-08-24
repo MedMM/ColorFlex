@@ -71,7 +71,7 @@ namespace Game.Inputs
                 {
                     ""name"": """",
                     ""id"": ""9f46b71c-fdea-45be-8b9d-fc3f5dd1fc4a"",
-                    ""path"": ""<Touchscreen>/position"",
+                    ""path"": ""<Touchscreen>/primaryTouch/position"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

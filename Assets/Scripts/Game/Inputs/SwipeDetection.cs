@@ -16,7 +16,6 @@ namespace Game.Inputs
 		public event Action OnSwipeRight;
 		public event Action OnSwipeUp;
 		public event Action OnSwipeDown;
-		public event Action<Vector2> OnSwipeDrag;
 
 		public SwipeDetection(InputManager inputManager,
 			ref float minimumDistance,

@@ -1,4 +1,5 @@
-﻿using Game.Inputs;
+﻿using Components.Movement.States;
+using Game.Inputs;
 using UniRx;
 using UnityEngine;
 
@@ -14,12 +15,12 @@ namespace Components.Movement
 
 		private void Start()
 		{
-			currentState = ChangeControllerState(new SolidMovement(inputManager, movable));
+			currentState = ChangeControllerState(new SolidMovementState(inputManager, movable));
 
 			Observable
 				.EveryUpdate()
 				.Where(_ => Input.GetKeyDown(KeyCode.Space))
-				.Subscribe(_ => ChangeControllerState(new SmoothMovement(inputManager, movable)))
+				.Subscribe(_ => ChangeControllerState(new SmoothMovementState(inputManager, movable)))
 				;
 		}
 

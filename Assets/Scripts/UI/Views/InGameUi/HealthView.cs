@@ -7,7 +7,7 @@ namespace UI.Views.InGameUi
 	{
 		[SerializeField] private HeartView heartViewPrefab;
 		[SerializeField] private List<HeartView> hearts = new List<HeartView>();
-		
+
 		public void DisplayHealth(int healthPoints)
 		{
 			foreach (var her in hearts) her.SetFillAmount(0.1f);

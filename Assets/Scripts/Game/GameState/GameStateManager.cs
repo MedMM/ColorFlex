@@ -1,6 +1,6 @@
 ﻿using Game.GameState.GameStates;
 
-namespace GameState
+namespace Game.GameState
 {
 	public class GameStateManager
 	{

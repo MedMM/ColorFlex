@@ -1,10 +1,11 @@
 ﻿using Game.Inputs;
+using UnityEngine;
 
-namespace Components.Movement
+namespace Components.Movement.States
 {
-	public class SolidMovement : AMovableControllerState
+	public class SolidMovementState : AMovableControllerState
 	{
-		public SolidMovement(InputManager inputManager, Movable movable) 
+		public SolidMovementState(InputManager inputManager, Movable movable) 
 			: base(inputManager, movable)
 		{
 		}
@@ -13,12 +14,20 @@ namespace Components.Movement
 		{
 			inputManager.Swipes.OnSwipeLeft += OnSwipeLeft;
 			inputManager.Swipes.OnSwipeRight += OnSwipeRight;
+			inputManager.Swipes.OnSwipeDown += OnSwipeDown;
+		}
+
+		private void OnSwipeDown()
+		{
+			movable.Dash(new Vector2(0, -15f), 1);
 		}
 
 		public override void OnStateExit()
 		{
 			inputManager.Swipes.OnSwipeLeft -= OnSwipeLeft;
 			inputManager.Swipes.OnSwipeRight -= OnSwipeRight;
+			inputManager.Swipes.OnSwipeDown -= OnSwipeDown;
+
 		}
 		
 		private void OnSwipeRight() 

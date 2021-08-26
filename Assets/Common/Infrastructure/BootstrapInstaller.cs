@@ -1,4 +1,4 @@
-﻿using GameState;
+﻿using Game.GameState;
 using Zenject;
 
 namespace Common.Infrastructure

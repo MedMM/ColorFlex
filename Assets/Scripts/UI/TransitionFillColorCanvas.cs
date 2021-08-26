@@ -10,7 +10,7 @@ namespace UI
 	{
 		[SerializeField] private Image fillImage;
 		[SerializeField] private float fadeOutTime;
-		[Inject] public GameColors gameColors;
+		[Inject] private GameColors gameColors;
 		
 		private void Start()
 		{

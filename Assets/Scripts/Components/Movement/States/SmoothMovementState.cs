@@ -1,13 +1,13 @@
 ﻿using Game.Inputs;
 using UnityEngine;
 
-namespace Components.Movement
+namespace Components.Movement.States
 {
-	public class SmoothMovement : AMovableControllerState
+	public class SmoothMovementState : AMovableControllerState
 	{
 		private float currentRotation;
 		
-		public SmoothMovement(InputManager inputManager, Movable movable)
+		public SmoothMovementState(InputManager inputManager, Movable movable)
 			: base(inputManager, movable)
 		{
 		}

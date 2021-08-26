@@ -1,5 +1,4 @@
-﻿using System;
-using DG.Tweening;
+﻿using DG.Tweening;
 using UnityEngine;
 
 namespace Components.Movement
@@ -13,14 +12,20 @@ namespace Components.Movement
 		[SerializeField] private Ease dashDownEase;
 		[SerializeField] private Ease dashBackEase;
 		[SerializeField] private float rotationMultiplayer = 1f;
-		private Vector2 startPosition = Vector2.zero;
+		private Vector2 mainPosition = Vector2.zero;
 		private float playerRotation;
+
+		private Vector2 MainPosition
+		{
+			get => mainPosition;
+			set => mainPosition = value;
+		}
 
 		public float Rotation
 		{
 			get => rb.rotation;
 			set => rb.rotation = value;
-		} 
+		}
 
 		public void Rotate(float angle)
 		{
@@ -32,7 +37,7 @@ namespace Components.Movement
 		{
 			Sequence dashSequence = DOTween.Sequence();
 			dashSequence.Append(rb.DOMove(position, time / 2).SetEase(dashDownEase));
-			dashSequence.Append(rb.DOMove(startPosition, time / 2).SetEase(dashBackEase));
+			dashSequence.Append(rb.DOMove(mainPosition, time / 2).SetEase(dashBackEase));
 		}
 
 		private void OnValidate()

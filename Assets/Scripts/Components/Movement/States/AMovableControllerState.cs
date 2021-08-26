@@ -1,7 +1,7 @@
 ﻿using System;
 using Game.Inputs;
 
-namespace Components.Movement
+namespace Components.Movement.States
 {
 	public abstract class AMovableControllerState
 	{
